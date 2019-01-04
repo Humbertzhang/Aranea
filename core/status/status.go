@@ -1,0 +1,6 @@
+package status
+
+const (
+	STATUSNORMAL=10
+	STATUSUNCONNECTED=50
+)
