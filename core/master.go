@@ -76,17 +76,21 @@ func (master *Master) Ping() {
 			case status.STATUSNORMAL:
 				break
 			case status.STATUSUNKNOWN:
+				fmt.Println("STATUSUNUNKNOWN")
 				if node.OutTimes > 10 {
 					node.Status = status.STATUSUNCONNECTED
 					node.OutTimes = 0
 				}
 				break
 			case status.STATUSUNCONNECTED:
+				fmt.Println("STATUSUNCONNECTED")
 				if node.OutTimes > 10 {
 					node.Status = status.STATUSOFFLINE
 				}
 				break
 			case status.STATUSOFFLINE:
+				//去掉node
+				fmt.Println("Rmoving Node:", node.Name)
 				err := master.RemoveNode(node.Name)
 				if err != nil {
 					panic(err)
@@ -101,29 +105,40 @@ func (master *Master) Ping() {
 			// 失败会报错,导致状态转变为unknown
 			NodeURL := "http://" + node.IP + ":" + node.Port + "/node/pong"
 			err := master.pingOnce(NodeURL)
+			// 状态控制
+			// 成功会将非normal状态转换回来
+			// 失败，如果原来为Normal,则会将Nromal状态转换回正常状态
 			if err != nil {
-				node.Status = status.STATUSUNKNOWN
+				if node.Status == status.STATUSNORMAL {
+					node.Status = status.STATUSUNKNOWN
+				}
+				node.OutTimes += 1
+			} else {
+				if node.Status != status.STATUSNORMAL {
+					node.Status = status.STATUSNORMAL
+					node.OutTimes = 0
+				}
 			}
 
 
 			// ping time setter 时间设置器
-			normalPingTime := int64(60)
-			unknownPingTime := int64(15)
-			unconnectedPingTime := int64(60*15) // 15min
+			normalPingTime := int64(1)
+			unknownPingTime := int64(15)		// 15s
+			unconnectedPingTime := int64(15*60) // 15min
 			offlinePingTime := int64(0)		 // offline下一次去掉即可
 
 			switch node.Status {
 			case status.STATUSNORMAL:
-				node.NextPing += normalPingTime
+				node.NextPing = time.Now().Unix() + normalPingTime
 				break
 			case status.STATUSUNKNOWN:
-				node.NextPing += unknownPingTime
+				node.NextPing = time.Now().Unix() + unknownPingTime
 				break
 			case status.STATUSUNCONNECTED:
-				node.NextPing += unconnectedPingTime
+				node.NextPing = time.Now().Unix() + unconnectedPingTime
 				break
 			case status.STATUSOFFLINE:
-				node.NextPing += offlinePingTime
+				node.NextPing = time.Now().Unix() + offlinePingTime
 				break
 			default:
 				fmt.Println("ping time setter error:", node.Status)
@@ -192,7 +207,8 @@ func PingJobJsonCreater(CrawlerURL string) (buffer *bytes.Buffer, err error){
 func (master *Master) postPingJobToNode(data *bytes.Buffer, nodeURL string) (statusCode int, err error){
 	//fmt.Printf("post ping job to node: %+v\n", data)
 	res, err := http.Post(nodeURL, "application/json; charset=utf-8", data)
-	fmt.Printf("Requests:%+v\n", res)
+	fmt.Println("status code:", res.StatusCode)
+	//fmt.Printf("Requests:%+v\n", res)
 	if err != nil {
 		return res.StatusCode, err
 	}

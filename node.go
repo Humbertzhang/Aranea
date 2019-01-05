@@ -53,6 +53,7 @@ func main() {
 	}
 
 	/*获取本地ip*/
+	// TODO:这里ip选择有错误，现在只有在我开着ssr时，master才能ping到node
 	addrs, err := net.InterfaceAddrs()
 	if err != nil {
 		os.Stderr.WriteString("Oops: " + err.Error() + "\n")
@@ -97,7 +98,7 @@ func main() {
 func Pong(writer http.ResponseWriter, request *http.Request) {
 	job := &core.Job{}
 	err := json.NewDecoder(request.Body).Decode(job)
-	fmt.Printf("JOB:%+v:", job)
+	fmt.Printf("JOB:%+v:\n", job)
 	if err != nil {
 		println("pong error")
 		writer.WriteHeader(http.StatusInternalServerError)
@@ -111,7 +112,6 @@ func Pong(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusOK)
 		writer.Write([]byte("status ok"))
 	}
-
 	return
 }
 
