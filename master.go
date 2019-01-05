@@ -38,6 +38,9 @@ func main() {
 	master.IP = "0.0.0.0"
 	master.Port = runPort
 
+	fmt.Println("Master is pinging...")
+	go master.Ping()
+
 	/* init server */
 	router := mux.NewRouter()
 	router.HandleFunc("/master/register", registerNode).Methods("POST")
@@ -46,6 +49,8 @@ func main() {
 	port := ":"+runPort
 	fmt.Println("listening localhost",port)
 	log.Fatal(http.ListenAndServe(port, nil))
+
+
 }
 
 /*

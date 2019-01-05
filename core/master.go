@@ -58,6 +58,7 @@ func (master *Master) Ping() {
 	for _, node := range master.Nodes {
 		node.NextPing = time.Now().Unix() + InitTime
 		node.OutTimes = 0
+		node.Status = status.STATUSNORMAL
 	}
 
 	for {
@@ -98,7 +99,7 @@ func (master *Master) Ping() {
 
 			// ping 操作
 			// 失败会报错,导致状态转变为unknown
-			NodeURL := "http://" + node.IP + ":" + node.Port + "/pong"
+			NodeURL := "http://" + node.IP + ":" + node.Port + "/node/pong"
 			err := master.pingOnce(NodeURL)
 			if err != nil {
 				node.Status = status.STATUSUNKNOWN
@@ -189,7 +190,7 @@ func PingJobJsonCreater(CrawlerURL string) (buffer *bytes.Buffer, err error){
 }
 
 func (master *Master) postPingJobToNode(data *bytes.Buffer, nodeURL string) (statusCode int, err error){
-	fmt.Printf("post ping job to node: %+v\n", data)
+	//fmt.Printf("post ping job to node: %+v\n", data)
 	res, err := http.Post(nodeURL, "application/json; charset=utf-8", data)
 	fmt.Printf("Requests:%+v\n", res)
 	if err != nil {
