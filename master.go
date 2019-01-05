@@ -1,8 +1,8 @@
 package main
 
 import (
-	"Aranea/core"
-	"Aranea/core/status"
+	"github.com/humbertzhang/Aranea/core"
+	"github.com/humbertzhang/Aranea/core/status"
 
 	"github.com/gorilla/mux"
 
@@ -69,13 +69,13 @@ func registerNode(writer http.ResponseWriter, request *http.Request) {
 	//println(node.Name)
 	if err != nil {
 		println("...")
-		/*返回错误信息*/
+		//返回错误信息
 		writer.WriteHeader(500)
 		return
 	}
 	node.Status = status.STATUSNORMAL
 
-	/*检查是否已经被注册*/
+	//检查节点是否已经注册
 	for _, v := range(master.Nodes) {
 		if v.IP == node.IP && v.Port == node.Port {
 			println("error:重复注册\n")
@@ -84,7 +84,7 @@ func registerNode(writer http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	/*注册并打印已经有了的node*/
+	//注册并打印已经有了的node
 	master.RegisterNode(node)
 	master.TraverseNodes()
 }

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"Aranea/core"
-	"Aranea/core/status"
+	"github.com/humbertzhang/Aranea/core"
+	"github.com/humbertzhang/Aranea/core/status"
 
 	"github.com/gorilla/mux"
 
@@ -16,26 +16,26 @@ import (
 var node = new(core.Node)
 
 func main() {
-	/*处理命令行参数*/
+	//处理命令行参数
 	runPort := "9699"
 	name := "node"
 	myip := "localhost"
-	masterhost := ""
-	masterport := ""
+	masterHost := ""
+	masterPort := ""
 
 	argv := os.Args
 	argc := len(os.Args)
 	if argc >= 2 {
 		for i := 0; i < argc; i += 1 {
 			if argv[i] == "-mh" {
-				/*master的host*/
-				masterhost = argv[i+1]
+				//master host
+				masterHost = argv[i+1]
 			}
 			if argv[i] == "-mp" {
-				/*master port*/
-				masterport = argv[i+1]
+				//master port
+				masterPort = argv[i+1]
 			}
-			/*自己监听的端口*/
+			//自己监听的端口
 			if argv[i] == "-p" || argv[i] == "--port" {
 				runPort = argv[i+1]
 			}
@@ -46,7 +46,7 @@ func main() {
 	}
 
 	//未指定master host & port 退出
-	if (masterhost == "" || masterport == "") {
+	if masterHost == "" || masterPort == "" {
 		fmt.Println("need master's port and master's host")
 		os.Exit(1)
 	}
@@ -73,7 +73,7 @@ func main() {
 	node.Status = status.STATUSNORMAL
 
 	/*注册到master*/
-	err = node.RegisterToMaster(masterhost, masterport)
+	err = node.RegisterToMaster(masterHost, masterPort)
 	if err != nil {
 		os.Stderr.WriteString("Oops: " + err.Error() + "\n")
 		os.Exit(1)

@@ -10,6 +10,7 @@ type Job struct {
 	Name 		string			`json:"name"`
 	URL 		string			`json:"url"`
 	Method 		string			`json:"method"`
+	Payload 	string			`json:"payload"`
 	Headers 	http.Header 	`json:"headers"`
 	// 每个Node在多久之内可以访问一次
 	Delay 		int				`json:"delay"`
