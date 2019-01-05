@@ -68,7 +68,7 @@ func registerNode(writer http.ResponseWriter, request *http.Request) {
 	err := json.NewDecoder(request.Body).Decode(node)
 	//println(node.Name)
 	if err != nil {
-		println("...")
+		println("register error")
 		//返回错误信息
 		writer.WriteHeader(500)
 		return

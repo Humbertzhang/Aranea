@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03f5654d-cf6d-4b27-bde4-1c76d86d35a2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/master_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/utils/timestamp.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/utils/timestamp_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/crawler.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/crawler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/crawler_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/crawler_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/http.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/job.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/master.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/master.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/master_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/master_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/status/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/status/status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/master.go" beforeDir="false" afterPath="$PROJECT_DIR$/master.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/node.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,65 +16,70 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/master.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="86" column="20" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/node.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="94" column="7" lean-forward="true" selection-start-line="94" selection-start-column="7" selection-end-line="94" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/master.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="196" column="30" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
-              <folding>
-                <element signature="e#14#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/crawler.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/job.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/node.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="42" column="13" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.4152174">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/master.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="233">
+                  <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/node.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="436">
+                  <caret line="99" column="31" selection-start-line="99" selection-start-column="31" selection-end-line="99" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/node.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="233">
+                  <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/master_test.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/master.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="383">
+                  <caret line="191" column="44" selection-start-line="191" selection-start-column="44" selection-end-line="191" selection-end-column="44" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/crawler.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="6">
+                  <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -96,7 +95,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/master.go" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/core/http.go" />
@@ -104,13 +102,14 @@
         <option value="$PROJECT_DIR$/core/timestamp.go" />
         <option value="$PROJECT_DIR$/core/utils/timestamp.go" />
         <option value="$PROJECT_DIR$/core/utils/timestamp_test.go" />
-        <option value="$PROJECT_DIR$/core/master_test.go" />
-        <option value="$PROJECT_DIR$/core/node.go" />
         <option value="$PROJECT_DIR$/core/status/status.go" />
         <option value="$PROJECT_DIR$/core/crawler.go" />
         <option value="$PROJECT_DIR$/core/job.go" />
-        <option value="$PROJECT_DIR$/core/master.go" />
+        <option value="$PROJECT_DIR$/master.go" />
+        <option value="$PROJECT_DIR$/core/node.go" />
         <option value="$PROJECT_DIR$/node.go" />
+        <option value="$PROJECT_DIR$/core/master_test.go" />
+        <option value="$PROJECT_DIR$/core/master.go" />
       </list>
     </option>
   </component>
@@ -245,34 +244,34 @@
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 53m 14s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 53m 25s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 53m 37s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 53m 42s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 53m 43s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 53m 44s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 53m 45s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestStringTimeStampNanoSecond_in_github_com_humbertzhang_Aranea_core_utils - 2019.01.05 at 18h 54m 39s.xml">
-      <configuration name="TestStringTimeStampNanoSecond in github.com/humbertzhang/Aranea/core/utils" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 18h 56m 45s.xml">
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 27m 04s.xml">
       <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 19h 00m 41s.xml">
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 27m 18s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 33m 50s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 33m 58s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 35m 57s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 37m 35s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 38m 20s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 39m 35s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 39m 57s.xml">
+      <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestMaster_PingOnce_in_github_com_humbertzhang_Aranea_core - 2019.01.05 at 22h 40m 54s.xml">
       <configuration name="TestMaster_PingOnce in github.com/humbertzhang/Aranea/core" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
@@ -289,12 +288,12 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15750916" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15750916" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49873737" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.498779" visible="true" weight="0.32959184" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.498779" visible="true" weight="0.32959184" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -352,13 +351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/crawler_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/go/src/time/time.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -386,13 +378,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/master_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/status/status.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -414,41 +399,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/crawler_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/crawler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="6">
           <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/node.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/master.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="196" column="30" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
-          <folding>
-            <element signature="e#14#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/master.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="86" column="20" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
+        <state relative-caret-position="233">
+          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="94" column="7" lean-forward="true" selection-start-line="94" selection-start-column="7" selection-end-line="94" selection-end-column="7" />
+        <state relative-caret-position="436">
+          <caret line="99" column="31" selection-start-line="99" selection-start-column="31" selection-end-line="99" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/node.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/master_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/master.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="191" column="44" selection-start-line="191" selection-start-column="44" selection-end-line="191" selection-end-column="44" />
         </state>
       </provider>
     </entry>

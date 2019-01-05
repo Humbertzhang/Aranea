@@ -50,5 +50,3 @@ func (node *Node) RegisterToMaster(masterIP string, masterPort string) (err erro
 	println("Node Registered to", masterIP, ":", masterPort)
 	return nil
 }
-
-//

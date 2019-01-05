@@ -147,14 +147,13 @@ func (master *Master) pingOnce(NodeURL string) (err error) {
 	if err != nil {
 		return err
 	}
-	fmt.Println(data)
 
 	// http post 发送给node url
 	// 并检查运行结果,若失败有第二次机会尝试.
 	statusCode, err := master.postPingJobToNode(data, NodeURL)
 	if err != nil  || statusCode != http.StatusOK{
 		// 检查第二次
-		CrawlerURL2 := URLs[millSecondNow+1%size]
+		CrawlerURL2 := URLs[(millSecondNow+1)%size]
 		data, err = PingJobJsonCreater(CrawlerURL2)
 		if err != nil {
 			return err
@@ -190,7 +189,9 @@ func PingJobJsonCreater(CrawlerURL string) (buffer *bytes.Buffer, err error){
 }
 
 func (master *Master) postPingJobToNode(data *bytes.Buffer, nodeURL string) (statusCode int, err error){
+	fmt.Printf("post ping job to node: %+v\n", data)
 	res, err := http.Post(nodeURL, "application/json; charset=utf-8", data)
+	fmt.Printf("Requests:%+v\n", res)
 	if err != nil {
 		return res.StatusCode, err
 	}

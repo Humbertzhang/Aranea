@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"github.com/humbertzhang/Aranea/core"
 	"github.com/humbertzhang/Aranea/core/status"
 
@@ -81,8 +82,8 @@ func main() {
 
 	/*http端口等待任务*/
 	router := mux.NewRouter()
-	router.HandleFunc("/jobs", WaitJobs).Methods("POST")
-	router.HandleFunc("/pang", Pong).Methods("POST")
+	router.HandleFunc("/node/jobs", WaitJobs).Methods("POST")
+	router.HandleFunc("/node/pong", Pong).Methods("POST")
 	http.Handle("/", router)
 
 	// run
@@ -94,7 +95,24 @@ func main() {
 // TODO:实现node接受Master ping过来的结构体之后进行一次爬取.200ok则返回statusOK，否则返回失败状态码
 // 心跳函数
 func Pong(writer http.ResponseWriter, request *http.Request) {
+	job := &core.Job{}
+	err := json.NewDecoder(request.Body).Decode(job)
+	fmt.Printf("JOB:%+v:", job)
+	if err != nil {
+		println("pong error")
+		writer.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	statusCode, _, err := job.Crawler.Request()
+	if statusCode != http.StatusOK {
+		writer.WriteHeader(statusCode)
+		writer.Write([]byte("status NOT ok"))
+	} else {
+		writer.WriteHeader(http.StatusOK)
+		writer.Write([]byte("status ok"))
+	}
 
+	return
 }
 
 
