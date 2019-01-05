@@ -12,6 +12,11 @@ type Node struct {
 	IP     string			`json:"ip"`
 	Port   string			`json:"port"`
 	Status int				`json:"status"`
+
+	// outtime ping失败次数
+	OutTimes int
+	// unix时间戳秒数, 代表下次ping的时间
+	NextPing int64
 }
 
 type NodeCreateJson struct {
@@ -45,3 +50,5 @@ func (node *Node) RegisterToMaster(masterIP string, masterPort string) (err erro
 	println("Node Registered to", masterIP, ":", masterPort)
 	return nil
 }
+
+//

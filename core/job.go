@@ -2,16 +2,12 @@ package core
 
 import (
 	"errors"
-	"net/http"
 )
 
 type Job struct {
+	*Crawler					`json:"crawler"`
 	Id 			string			`json:"id"`
-	Name 		string			`json:"name"`
-	URL 		string			`json:"url"`
-	Method 		string			`json:"method"`
-	Payload 	string			`json:"payload"`
-	Headers 	http.Header 	`json:"headers"`
+	Name 		string			`json:"name"`		
 	// 每个Node在多久之内可以访问一次
 	Delay 		int				`json:"delay"`
 }

@@ -82,6 +82,7 @@ func main() {
 	/*http端口等待任务*/
 	router := mux.NewRouter()
 	router.HandleFunc("/jobs", WaitJobs).Methods("POST")
+	router.HandleFunc("/pang", Pong).Methods("POST")
 	http.Handle("/", router)
 
 	// run
@@ -89,6 +90,14 @@ func main() {
 	fmt.Println("Node listening localhost",port)
 	log.Fatal(http.ListenAndServe(port, nil))
 }
+
+// TODO:实现node接受Master ping过来的结构体之后进行一次爬取.200ok则返回statusOK，否则返回失败状态码
+// 心跳函数
+func Pong(writer http.ResponseWriter, request *http.Request) {
+
+}
+
+
 
 func WaitJobs(writer http.ResponseWriter, request *http.Request) {
 

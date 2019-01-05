@@ -16,7 +16,7 @@ const (
 func TestCrawler_Request_GET(t *testing.T) {
 	crawler := &Crawler{}
 	crawler.URL = GetURL
-	crawler.Method = HTTPGET
+	crawler.Method = http.MethodGet
 
 	statusCode, _, err := crawler.Request()
 	if err != nil {
@@ -30,7 +30,7 @@ func TestCrawler_Request_GET(t *testing.T) {
 func TestCrawler_Request_POST(t *testing.T) {
 	crawler := &Crawler{}
 	crawler.URL = PostURL
-	crawler.Method = HTTPPOST
+	crawler.Method = http.MethodPost
 	crawler.Payload = "TestString"
 	// 注意ContentType
 	crawler.ContentType = "text/plain"
@@ -50,7 +50,7 @@ func TestCrawler_Request_POST(t *testing.T) {
 func TestCrawler_Request_PUT(t *testing.T) {
 	crawler := &Crawler{}
 	crawler.URL = PutURL
-	crawler.Method = HTTPPUT
+	crawler.Method = http.MethodPut
 	crawler.Payload = "TestString"
 	crawler.ContentType = "text/plain"
 	statusCode, body, err := crawler.Request()
@@ -69,7 +69,7 @@ func TestCrawler_Request_PUT(t *testing.T) {
 func TestCrawler_Request_DELETE(t *testing.T) {
 	crawler := &Crawler{}
 	crawler.URL = DeleteURL
-	crawler.Method = HTTPDELETE
+	crawler.Method = http.MethodDelete
 	crawler.Payload = "TestString"
 	crawler.ContentType = "text/plain"
 	statusCode, body, err := crawler.Request()

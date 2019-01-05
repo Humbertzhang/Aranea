@@ -20,6 +20,8 @@ type Crawler struct {
 	Headers 	http.Header 	`json:"headers"`
 }
 
+
+
 // 这里利用了http包中的Do()方法，省去了很多工作
 func (crawler *Crawler) Request() (status int, body string, err error) {
 	client := &http.Client{}
