@@ -205,12 +205,15 @@ func PingJobJsonCreater(CrawlerURL string) (buffer *bytes.Buffer, err error){
 }
 
 func (master *Master) postPingJobToNode(data *bytes.Buffer, nodeURL string) (statusCode int, err error){
-	//fmt.Printf("post ping job to node: %+v\n", data)
+	fmt.Println("Master: NodeURL:", nodeURL)
 	res, err := http.Post(nodeURL, "application/json; charset=utf-8", data)
-	fmt.Println("status code:", res.StatusCode)
-	//fmt.Printf("Requests:%+v\n", res)
+	if res == nil {
+		fmt.Println("Master:No response")
+		return http.StatusInternalServerError, err
+	}
 	if err != nil {
 		return res.StatusCode, err
 	}
+	fmt.Println("status code:", res.StatusCode)
 	return res.StatusCode, nil
 }

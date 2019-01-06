@@ -64,8 +64,6 @@ func main() {
 			if ipnet.IP.To4() != nil {
 				myip = ipnet.IP.String()
 				fmt.Println(myip)
-				// 疑惑：这里可以打印出4个ip地址，不清楚哪个才是正确的，取的en0那个
-				break;
 			}
 		}
 	}
@@ -83,8 +81,9 @@ func main() {
 
 	/*http端口等待任务*/
 	router := mux.NewRouter()
-	router.HandleFunc("/node/jobs", WaitJobs).Methods("POST")
-	router.HandleFunc("/node/pong", Pong).Methods("POST")
+	router.HandleFunc("/node/health", Health).Methods(http.MethodGet)
+	router.HandleFunc("/node/jobs", WaitJobs).Methods(http.MethodPost)
+	router.HandleFunc("/node/pong", Pong).Methods(http.MethodPost)
 	http.Handle("/", router)
 
 	// run
@@ -92,6 +91,13 @@ func main() {
 	fmt.Println("Node listening localhost",port)
 	log.Fatal(http.ListenAndServe(port, nil))
 }
+
+
+func Health(writer http.ResponseWriter, request *http.Request) {
+	writer.WriteHeader(200)
+	return
+}
+
 
 // TODO:实现node接受Master ping过来的结构体之后进行一次爬取.200ok则返回statusOK，否则返回失败状态码
 // 心跳函数
@@ -112,6 +118,7 @@ func Pong(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusOK)
 		writer.Write([]byte("status ok"))
 	}
+	fmt.Println("NODE: MADE response.")
 	return
 }
 

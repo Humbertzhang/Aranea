@@ -7,9 +7,9 @@ import (
 	"github.com/gorilla/mux"
 
 	"encoding/json"
-	"net/http"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 )
 
@@ -43,14 +43,18 @@ func main() {
 
 	/* init server */
 	router := mux.NewRouter()
-	router.HandleFunc("/master/register", registerNode).Methods("POST")
-	router.HandleFunc("/master/unregister", unregisterNode).Methods("DELETE")
+	router.HandleFunc("/master/health", Health).Methods(http.MethodGet)
+	router.HandleFunc("/master/register", registerNode).Methods(http.MethodPost)
+	router.HandleFunc("/master/unregister", unregisterNode).Methods(http.MethodDelete)
 	http.Handle("/", router)
 	port := ":"+runPort
 	fmt.Println("listening localhost",port)
 	log.Fatal(http.ListenAndServe(port, nil))
+}
 
-
+func Health(writer http.ResponseWriter, request *http.Request) {
+	writer.WriteHeader(200)
+	return
 }
 
 /*
