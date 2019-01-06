@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"time"
 )
 
 type Node struct {
@@ -16,7 +17,7 @@ type Node struct {
 	// outtime ping失败次数
 	OutTimes int
 	// unix时间戳秒数, 代表下次ping的时间
-	NextPing int64
+	NextPing time.Time
 }
 
 type NodeCreateJson struct {

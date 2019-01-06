@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/gorhill/cronexpr"
 	"github.com/humbertzhang/Aranea/core/status"
 	"github.com/humbertzhang/Aranea/core/utils"
 	"net/http"
@@ -54,20 +55,19 @@ func (master *Master) TraverseNodes() {
 func (master *Master) Ping() {
 	// 初始化时间，将所有node的nextPing时间设为now()+某s
 	// 初始化失败次数
-	InitTime := int64(5)
 	for _, node := range master.Nodes {
-		node.NextPing = time.Now().Unix() + InitTime
+		node.NextPing = time.Now()
 		node.OutTimes = 0
 		node.Status = status.STATUSNORMAL
 	}
 
 	for {
 		// 无限循环.
-		for _, node := range master.Nodes {
 
+		for _, node := range master.Nodes {
 			// 时间是否到了可以ping的时候
 			// 小于代表不可以，直接continue
-			if time.Now().Unix() < node.NextPing {
+			if time.Now().Before(node.NextPing) {
 				continue
 			}
 
@@ -122,23 +122,29 @@ func (master *Master) Ping() {
 
 
 			// ping time setter 时间设置器
-			normalPingTime := int64(1)
-			unknownPingTime := int64(15)		// 15s
-			unconnectedPingTime := int64(15*60) // 15min
-			offlinePingTime := int64(0)		 // offline下一次去掉即可
+
+			now := time.Now()
+
+			// 15s
+			exprNormal := cronexpr.MustParse("*/15 * * * * * *")
+			// 5s
+			exprUnKnown := cronexpr.MustParse("*/5 * * * * * *")
+			// 5min
+			exprUnConnected := cronexpr.MustParse("* */5 * * * * *")
+			exprOffline := cronexpr.MustParse("* * * * * * *")
 
 			switch node.Status {
 			case status.STATUSNORMAL:
-				node.NextPing = time.Now().Unix() + normalPingTime
+				node.NextPing = exprNormal.Next(now)
 				break
 			case status.STATUSUNKNOWN:
-				node.NextPing = time.Now().Unix() + unknownPingTime
+				node.NextPing = exprUnKnown.Next(now)
 				break
 			case status.STATUSUNCONNECTED:
-				node.NextPing = time.Now().Unix() + unconnectedPingTime
+				node.NextPing = exprUnConnected.Next(now)
 				break
 			case status.STATUSOFFLINE:
-				node.NextPing = time.Now().Unix() + offlinePingTime
+				node.NextPing = exprOffline.Next(now)
 				break
 			default:
 				fmt.Println("ping time setter error:", node.Status)
@@ -146,6 +152,13 @@ func (master *Master) Ping() {
 				break
 			}
 
+		}
+
+		// 每100ms扫描一次
+		// 通过select的阻塞机制实现
+		// 其中timer的原理是 timer中有个channel 叫 C, 当到期时timer会向这个channel投递一个对象
+		select {
+		case <- time.NewTimer(100*time.Millisecond).C:
 		}
 	}
 }
