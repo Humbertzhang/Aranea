@@ -18,6 +18,8 @@ type Node struct {
 	OutTimes int
 	// unix时间戳秒数, 代表下次ping的时间
 	NextPing time.Time
+
+	JQ 		JobQueue
 }
 
 type NodeCreateJson struct {
@@ -25,6 +27,8 @@ type NodeCreateJson struct {
 	IP     string			`json:"ip"`
 	Port   string			`json:"port"`
 }
+
+
 
 // 注册到master
 func (node *Node) RegisterToMaster(masterIP string, masterPort string) (err error) {
@@ -51,3 +55,32 @@ func (node *Node) RegisterToMaster(masterIP string, masterPort string) (err erro
 	println("Node Registered to", masterIP, ":", masterPort)
 	return nil
 }
+
+
+/*
+TODO:需要一个消息队列或者etcd？，去同步任务执行结果
+
+*/
+// 执行任务
+/*
+func (node *Node) LoopDoJobs() {
+	for j := range node.JQ.Queue {
+		resp, err := DoJob(j)
+		if err != nil {
+
+		}
+	}
+}
+
+func DoJob(job *Job) (*http.Response, error) {
+
+
+	return &http.Response{}, nil
+}
+*/
+
+
+
+
+
+

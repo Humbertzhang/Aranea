@@ -37,19 +37,28 @@ func main() {
 	/* init master */
 	master.IP = "0.0.0.0"
 	master.Port = runPort
+	//master.JQ.Queue = make([]*core.Job, 0)
+	//master.JQ.JobCounter = 0
 
 	fmt.Println("Master is pinging...")
 	go master.Ping()
+
+
 
 	/* init server */
 	router := mux.NewRouter()
 	router.HandleFunc("/master/health", Health).Methods(http.MethodGet)
 	router.HandleFunc("/master/register", registerNode).Methods(http.MethodPost)
 	router.HandleFunc("/master/unregister", unregisterNode).Methods(http.MethodDelete)
+	router.HandleFunc("/master/job", registerJob).Methods(http.MethodPost)
 	http.Handle("/", router)
 	port := ":"+runPort
 	fmt.Println("listening localhost",port)
 	log.Fatal(http.ListenAndServe(port, nil))
+}
+
+func registerJob(writer http.ResponseWriter, request *http.Request) {
+
 }
 
 func Health(writer http.ResponseWriter, request *http.Request) {

@@ -13,6 +13,7 @@ import (
 )
 
 type Master struct {
+	JQ 		JobQueue
 	IP 		string
 	Port 	string
 	Nodes 	[]*Node
@@ -41,6 +42,76 @@ func (master *Master) TraverseNodes() {
 		fmt.Printf("%d:%+v\n", k, v)
 	}
 }
+
+
+func (master *Master) DistributeJob() {
+	nodec := 0
+	for j := range master.JQ.Queue {
+
+		// 任务超出最大失败次数，便打印并放弃
+		if j.FailedTimes >= len(master.Nodes) {
+			fmt.Println("JobId:", j.Id, "JobURL:", j.URL, "超出最大失败次数.")
+			continue
+		}
+
+		nodeTryTimes := 0
+		for {
+			// tryTime记录遍历node的个数，当大于node总个数时打印error，放弃循环
+			if nodeTryTimes > len(master.Nodes) {
+				fmt.Println("Error: 无node可用!")
+				break
+			}
+
+			// 检查node是否正常，不正常继续
+			if master.Nodes[nodec].Status != status.STATUSNORMAL {
+				nodec = (nodec + 1) % len(master.Nodes)
+				nodeTryTimes += 1
+				continue
+			}
+		}
+
+
+		resp, err := master.DistributeJobToNode(j, master.Nodes[nodec])
+		if err != nil {
+			fmt.Println(err)
+			j.FailedTimes += 1
+
+			// 失败后判断ping是否成功，若失败，则标记node为unknown， 若成功，则将任务重新加入到队列中
+			nodePingURL := "http://" + master.Nodes[nodec].IP + ":" + master.Nodes[nodec].Port + "/node/pong"
+			if err = master.pingOnce(nodePingURL); err != nil {
+				fmt.Println(err)
+				master.Nodes[nodec].Status = status.STATUSUNKNOWN
+			} else {
+				master.JQ.PushJob(j)
+				continue
+			}
+		}
+		// 第一次成功了，打印返回信息
+		fmt.Println(resp)
+	}
+}
+
+func (master *Master) DistributeJobToNode(job *Job, node *Node) (*http.Response, error) {
+	nodeURL := "http://" + node.IP + ":" + node.Port + "/node/job"
+
+	data := new(bytes.Buffer)
+	if err := json.NewEncoder(data).Encode(job); err != nil{
+		fmt.Println(err)
+		return &http.Response{}, err
+	}
+
+	res, err := http.Post(nodeURL, "application/json; charset=utf-8", data)
+	if res == nil {
+		fmt.Println("Master:No response")
+		return &http.Response{}, err
+	}
+	if err != nil {
+		return res, err
+	}
+	return res, nil
+}
+
+
 
 
 // master 发送http心跳任务, 设置超时时间
@@ -216,6 +287,7 @@ func PingJobJsonCreater(CrawlerURL string) (buffer *bytes.Buffer, err error){
 	}
 	return data, nil
 }
+
 
 func (master *Master) postPingJobToNode(data *bytes.Buffer, nodeURL string) (statusCode int, err error){
 	fmt.Println("Master: NodeURL:", nodeURL)
